@@ -1,5 +1,5 @@
 import './styles/index.css'
-import { Routes, Route} from 'react-router-dom'
+
 import Inicio from './pages/Inicio'
 import Contacto from './pages/Contacto'
 import Navbar from './components/NavbarCustom'
@@ -9,8 +9,11 @@ import ProductoCategoria from './pages/ProductoCategoria'
 import Carrito from './pages/Carrito'
 import Pagar from './pages/Pagar'
 import Login from './pages/Login'
+import BuscarProducto from './pages/BuscarProducto'
 import Footer from './components/Footer'
+import RutaProtegida from './pages/RutaProtegida'
 
+import { Routes, Route} from 'react-router-dom'
 import { CarritoProvider } from './context/CarritoContext'
 import { ProductosProvider } from './context/ProductosContext'
 import { UsuarioProvider } from './context/UsuarioContext'
@@ -32,9 +35,17 @@ function App() {
                 <Route path='/productos/:plataforma/:id' element={<DetalleProducto />}/>
                 <Route path='/categoria/:nombre' element={<ProductoCategoria/>}/>
                 <Route path='/plataforma/:nombre' element={<ProductoCategoria/>}/>
+                <Route path='/buscarProducto' element={<BuscarProducto />}/>
                 <Route path='/login' element={<Login />}/>
                 <Route path='/carrito' element={<Carrito />} />
-                <Route path='/pagar' element={<Pagar />} />
+
+                {/* Ruta protegida solo para usuarios */}
+                <Route path='/pagar' element={<RutaProtegida> <Pagar /> </RutaProtegida>} />
+                {/*ruta para perfil usuario */}
+
+                {/* Ruta protegida solo para admin */}
+                {/* Ruta para Dashboard - CRUD */}
+                
               </Routes>
               </div>
               

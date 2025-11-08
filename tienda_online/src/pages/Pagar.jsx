@@ -1,14 +1,13 @@
 import React, { useContext} from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useCarrito } from "../context/CarritoContext";
+import { useCarritoContext } from "../context/CarritoContext";
 import { UserContext } from '../context/UsuarioContext';
 
 function Pagar() {
-    const { carrito, vaciarCarrito} = useCarrito();
+    const { carrito, vaciarCarrito, total} = useCarritoContext();
     const { user }  = useContext(UserContext);
     const navigate = useNavigate();
 
-    const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
 
     const comprar =() => {
         if (!user) {

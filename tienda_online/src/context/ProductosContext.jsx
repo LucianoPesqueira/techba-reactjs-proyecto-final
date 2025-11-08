@@ -10,24 +10,9 @@ export const ProductosProvider = ({ children }) => {
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [filteredProduct, setFilteredProduct] = useState([]);
     const MOCKAPI_URL = "https://68d48305214be68f8c696be9.mockapi.io/api/productos";
     const LOCAL_JSON = "data/listaProductos.json";
-
-    // useEffect(() => {
-    //     fetch("https://68d48305214be68f8c696be9.mockapi.io/api/productos")
-    //       .then((res) => {
-    //         if (!res.ok) throw new Error("Error al cargar los productos");
-    //         return res.json()
-    //       })
-    //       .then((data) => {
-    //         setProductos(data);
-    //         setLoading(false)
-    //       })
-    //       .catch((err) => {
-    //         setError(err.message);
-    //         setLoading(false);
-    //       });
-    // }, []);
 
     useEffect(() => {
       //funcion asincrona dentro del useEffect
@@ -78,8 +63,18 @@ export const ProductosProvider = ({ children }) => {
       cargarProductos();
     }, []);
 
+    {/*funcion busqueda de productos */}
+    const searchProduct = (search) => {
+      if (!search) {
+        setFilteredProduct(productos);
+      } else {
+        const resultado = productos.filter(p => p.nombre.toLowerCase().includes(search.toLowerCase()));
+        setFilteredProduct(resultado)
+      }
+    };
+
     return (
-        <ProductContext.Provider value={{productos, loading, error }}>
+        <ProductContext.Provider value={{productos, loading, error, filteredProduct, searchProduct }}>
             {children}
         </ProductContext.Provider>
     );

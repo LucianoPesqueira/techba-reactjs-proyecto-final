@@ -1,8 +1,8 @@
-import "../styles/pages/productocategoria.css"
+import "../styles/pages/buscarproducto.css"
 import { Link, useLocation, useParams } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
 import { ProductContext } from "../context/ProductosContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 export default function ProductoCategoria() {
     const { productos, loading, error } = useContext(ProductContext);
@@ -10,19 +10,41 @@ export default function ProductoCategoria() {
     const location = useLocation();
     const esPlataforma = location.pathname.includes('/plataforma/');
 
+    const [rango, setRango] = useState({ min: 0, max: Infinity});
+    const [min, setMin] = useState('');
+    const [max, setMax] = useState('');
+
+    const limpiarFiltro = () => {
+        setMin("");
+        setMax("");
+        setRango({ min: 0, max: Infinity});
+    };
+
     if(loading) return <p>Cargando Productos...</p>;
     if(error) return <p>{error}</p>;
 
-    //filtrar productos
-    // const productosFiltrados = productos.filter((p) =>
-    //     p.categoria.some(
-    //         (cat) => cat.toLowerCase() === nombre.toLowerCase()
-    //     )
-    // );
+    {/*mostrar los productos segun categoria/plataforma */}
     const productosFiltrados = productos.filter(p =>
         esPlataforma ? p.plataforma?.some(plat => plat.toLowerCase() === nombre.toLowerCase())
         : p.categoria?.some(cat => cat.toLowerCase() === nombre.toLowerCase())
     );
+
+    const productoFiltradosPorPrecio = productosFiltrados.filter((p) => { 
+        const precio = Number(p.precio);
+        return (
+            (!rango.min || precio >= rango.min) &&
+            (!rango.max || precio <= rango.max)
+        );
+    });
+
+    {/* manejar los inputs min/max de precio */}
+    const handleInputPriceChange = (e) => {
+        e.preventDefault();
+        setRango({
+            min: Number(min) || 0,
+            max: Number(max) || 999
+        });
+    }
 
     return (
         <div className="card-category-product">
@@ -50,24 +72,38 @@ export default function ProductoCategoria() {
                     <div className="price-filters">
                         <div className="price-filters-item">
                             <label>Desde</label>
-                            <input type="number" placeholder="0"/>
+                            <input 
+                                type="number" 
+                                placeholder="0" 
+                                value={min} 
+                                onChange={(e) => setMin(e.target.value)}
+                            />
                         </div>
                         <div className="price-filters-item">
                             <label>Hasta</label>
-                            <input type="number" placeholder="99000" />
+                            <input 
+                                type="number"
+                                placeholder="104800"
+                                value={max}
+                                onChange={(e) => setMax(e.target.value)}
+                            />
                         </div>
-                        <button className="price-btn" type="submit" disabled>Aplicar</button>
+                        <button 
+                            className="price-btn" 
+                            type="submit" 
+                            onClick={handleInputPriceChange}
+                        >Filtrar</button>
                     </div>
                 </div>
 
                 {/* Lista de productos */}
                 <div className="details-products">
-                    {productosFiltrados.length > 0 ? (
+                    {productoFiltradosPorPrecio.length > 0 ? (
                         <ul className="product-list">
-                            {productosFiltrados.map((producto) => (
+                            {productoFiltradosPorPrecio.map((producto) => (
                                 <li key={producto.id} className="product-item">
                                     <Link
-                                        to={esPlataforma ? `/productos/${producto.plataforma || 'sin-plataforma'}`:
+                                        to={esPlataforma ? `/productos/${producto.plataforma || 'sin-plataforma'}/${producto.id}`:
                                     `/productos/${producto.categoria || 'sin-categoria'}/${producto.id}`}
                                         state={{ producto }}
                                     >
@@ -84,8 +120,10 @@ export default function ProductoCategoria() {
                                 </li>
                             ))}
                         </ul>
-                    ) : (
+                    ) : productoFiltradosPorPrecio.length === 0 ? (
                         <p>No hay productos en esta categoría</p>
+                    ):(
+                        <p>Cargando productos...</p>
                     )}
                 </div>
             </div>

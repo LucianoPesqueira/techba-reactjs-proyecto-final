@@ -1,32 +1,15 @@
 [
   {
-    "nombre": "usuario1",
+    "nombre": "user1",
     "contrasena": "1234",
-    "tipo": false,
+    "email": "luciano@gmail.com",
+    "is_admin": false,
     "id": "1"
   },
   {
-    "nombre": "usuario2",
-    "contrasena": "123",
-    "tipo": false,
+    "nombre": "lucianoadmin",
+    "contrasena": "admin123",
+    "is_admin": true,
     "id": "2"
-  },
-  {
-    "nombre": "Luciano",
-    "contrasena": "123",
-    "tipo": false,
-    "id": "3"
-  },
-  {
-    "nombre": "react",
-    "contrasena": "react",
-    "tipo": false,
-    "id": "4"
-  },
-  {
-    "nombre": "algo",
-    "contrasena": "algo123",
-    "tipo": false,
-    "id": "5"
   }
 ]

@@ -1,17 +1,19 @@
 import '../styles/components/navbarcustom.css'
 import { Navbar, Nav, Container, NavDropdown, Form, Button, ButtonGroup, InputGroup} from 'react-bootstrap';
 import { useState, useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { useCarrito } from '../context/CarritoContext'
+import { Link, useNavigate } from 'react-router-dom'
+import { useCarritoContext } from '../context/CarritoContext'
 import { ProductContext } from '../context/ProductosContext';
-import { UserContext } from '../context/UsuarioContext';
+import { useUserContext } from '../context/UsuarioContext';
 
 export default function NavbarCustom() {
-  const {carrito} = useCarrito();
+  const {carrito} = useCarritoContext();
   const cantidadTotal = carrito.reduce((acc, item) => acc + item.cantidad, 0);//suma cantidad
-  const { productos, loading, error } = useContext(ProductContext);
+  const { productos, loading, error, filteredProduct, searchProduct } = useContext(ProductContext);
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
-  const {user, logout}  = useContext(UserContext);
+  const { user, logout, isAuthenticated, isAdmin } = useUserContext();
 
   const [expanded, setExpanded] = useState(false);
 
@@ -36,11 +38,22 @@ export default function NavbarCustom() {
             <InputGroup>
               <Form.Control
                 type="search"
+                value={searchTerm}
                 size='sm'
                 placeholder="Buscar..."
                 aria-label="Search"
+                onChange={(e) => {
+                  searchProduct(e.target.value);
+                  setSearchTerm(e.target.value);
+                }}
               />
-              <Button variant="outline-secondary">
+              <Button 
+                variant="outline-secondary" 
+                onClick={() => {
+                  navigate("/buscarProducto", { state: { filteredProduct } });
+                  setSearchTerm('');
+                }}
+              >
                 <i className="fa-solid fa-magnifying-glass"></i>
               </Button>
             </InputGroup>
@@ -57,16 +70,26 @@ export default function NavbarCustom() {
               />
             </Link>
           </Navbar.Brand>
-          {/* Derecha: Iniciar Sesion - Carrito */}
+          {/* Derecha: Iniciar Sesion - Admin - Carrito */}
           <Nav className="ms-auto d-flex align-items-center">
             <ButtonGroup className='card-buttons-right'>
 
-              <Button variant='link' size='lg' className='text-white' as={Link} to={'/login'}>
+              <Button variant='link' size='lg' className='text-white' as={Link} to={isAuthenticated? '#':'/login'}>
                 <i className="fa-solid fa-user m-2 card-user-icon"></i>
-                <span className="card-user-span">{user ? `¡Hola!, ${user.nombre}` : 'Iniciar sesión / Registrarse'}</span>
+                <span className="card-user-span">
+                  {isAuthenticated ? `¡Hola!, ${user.nombre}` : 'Iniciar sesión / Registrarse'}
+                </span>
               </Button>
-              {user && (
-                <Button variant='link' size='md' className='text-white ms-2' onClick={logout}>Salir</Button>
+
+              {isAuthenticated && (
+                <>
+                  {isAdmin && (
+                    <Button variant='link' size='md' className='text-white ms-2 card-user-admin' as={Link} to={'/admin'}>
+                      Admin
+                    </Button>
+                  )}
+                  <Button variant='link' size='md' className='text-white ms-2 card-user-logout' onClick={logout}>Salir</Button>
+                </>
               )}
               {/*Link carrito */}
               <Button variant="link" size='lg' className='text-white' as={Link} to={'/carrito'}>
@@ -134,3 +157,9 @@ export default function NavbarCustom() {
   );
 }
 
+
+//resaltar en que parte de la pagina estoy:
+//si estoy en productos que el boton de navbar se muestre con un color llamativo
+//para que el usuario sepa donde se encuentra
+
+//https://www.react-icons.com/

@@ -1,13 +1,12 @@
 import React, { useContext, useState} from 'react'
-import { useCarrito } from "../context/CarritoContext";
-import { UserContext } from '../context/UsuarioContext';
+import { useCarritoContext } from "../context/CarritoContext";
+import { useUserContext } from '../context/UsuarioContext';
 import { Link, useNavigate } from "react-router-dom";
 
 
 export default function Carrito() {
-    const {carrito,agregarAlCarrito, borrarProducto, vaciarCarrito} = useCarrito();
-    const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
-    const { user }  = useContext(UserContext);
+    const {carrito, actualizarCantidad , borrarProducto, vaciarCarrito, total} = useCarritoContext();
+    const { user }  = useUserContext();
     const navigate = useNavigate();
 
     const comprar = () => {
@@ -28,7 +27,8 @@ export default function Carrito() {
                 {carrito.map((p) => (
                     <div key={p.id}>
                         {p.nombre} (${p.precio.toLocaleString("es-AR", { minimumFractionDigits: 2 })}) * {p.cantidad}
-                        <button onClick={() => agregarAlCarrito(p, 1)}>+</button>
+                        <button onClick={() => actualizarCantidad(p, +1)}>+</button>
+                        <button onClick={() => actualizarCantidad(p, -1)}>-</button>
                         <button onClick={() => borrarProducto(p.id)}>x</button>
                     </div>
                 ))}

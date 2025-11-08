@@ -1,25 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Container, Form, FormGroup, Row, Col, Button } from 'react-bootstrap'
 import { useNavigate, useLocation } from 'react-router-dom';
-import { UserContext } from '../context/UsuarioContext';
+import { useUserContext } from '../context/UsuarioContext';
 
 function Login() {
     const [nombre, setNombre] = useState('');
     const [contrasena, setContrasena] = useState('');
-    const {user, loadingUser, errorUser, login}  = useContext(UserContext);
+    const { loadingUser, errorUser, login, isAuthenticated } = useUserContext();
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from || '/';
+    const from = location.state?.from || '/'; //ruta a la que redirigir despues del login
 
     const handleSubmit = (e) => {
         e.preventDefault();
         login({ nombre, contrasena });
     };
 
+    //si ya esta logueado, redirijo al from
     useEffect(() => {
-        if (user) 
-            navigate(from);
-    }, [user, navigate, from]);
+        if (isAuthenticated) navigate(from);
+    }, [isAuthenticated, navigate, from]);
 
     //del context usuario obtengo los nombres de estado
     if(loadingUser) return <p>Cargando Usuario...</p>;

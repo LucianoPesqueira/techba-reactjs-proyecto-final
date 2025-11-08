@@ -1,18 +1,13 @@
-import "../styles/pages/productos.css"
-import { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from 'react'
 import { ProductContext } from '../context/ProductosContext';
+import { useLocation, Link } from 'react-router-dom';
 
-
-export default function Productos() {
-  const { productos, loading, error } = useContext(ProductContext);
-
-  if(loading) return <p>Cargando Productos...</p>;
-  if(error) return <p>{error}</p>;
-
+function BuscarProducto() {
+    const location = useLocation();
+    const { filteredProduct } = location.state || {};
   return (
     <ul className="card-product-list">
-      {productos.map((producto) => (
+      {filteredProduct && filteredProduct.length > 0 ? filteredProduct.map((producto) => (
         <li key={producto.id} className="card-product">
           <Link to={`/productos/${producto.categoria || 'sin-categoria'}/${producto.id}`} state={{producto}}>
           <img src={producto.imagen} alt={producto.nombre} className="card-product-img"></img>
@@ -22,23 +17,11 @@ export default function Productos() {
           </div>
           </Link>
         </li>
-      ))}
+      )) : (
+        <p>No se encontraron productos.</p>
+      )}
     </ul>
-  );
+  )
 }
 
-{/*schema productos 
-  id
-  nombre
-  descripcion
-  precio
-  avatar
-  categoria
-  stock
-  detalles
-  
-  otra api: https://fakestoreapi.com/products
-  mockfly
-
-  mockapi.io: https://http2.mlstatic.com/D_Q_NP_2X_787674-MLA93930889982_102025-E.webp (url profe)
-  */}
+export default BuscarProducto

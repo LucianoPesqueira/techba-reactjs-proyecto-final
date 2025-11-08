@@ -1,6 +1,6 @@
 import "../styles/pages/detalleproducto.css"
 import { Link, useParams, useLocation } from "react-router-dom";
-import { useCarrito } from '../context/CarritoContext'
+import { useCarritoContext } from '../context/CarritoContext'
 import { ProductContext } from "../context/ProductosContext";
 import { useContext, useEffect, useState } from "react";
 import Breadcrumb from "../components/Breadcrumb";
@@ -10,26 +10,8 @@ export default function ProductoDetalle() {
   // const location = useLocation();
   const { productos, loading, error } = useContext(ProductContext);
   // const [producto, setProducto] = useState(location.state?.producto);
-  const {agregarAlCarrito} = useCarrito();
+  const {agregarAlCarrito} = useCarritoContext();
   const [cantidad, setCantidad] = useState(1);
-  // const [loading, setLoading] = useState(!producto);
-
-  // useEffect(() =>{
-  //   if (!producto) {
-  //     setLoading(true);
-  //     fetch(`https://68d48305214be68f8c696be9.mockapi.io/api/productos/${id}`)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         // const detalleModificado = data.map(item => ({
-  //         //   ...item,
-  //         //   precio: Number(item.precio)
-  //         // }))
-  //         setProducto(data);
-  //         setLoading(false);
-  //       })
-  //       .catch(() => setLoading(false));
-  //   }
-  // }, [id, producto]);
   const producto = productos.find(p => p.id === id);
 
   if(loading) return <p>Cargando Productos...</p>;
@@ -64,7 +46,7 @@ export default function ProductoDetalle() {
           <div className="qty-button">
             <input 
               type="number" 
-              min="1" 
+              min="1"
               max={producto.stock}
               value={cantidad}
               onChange={(e) => setCantidad(Number(e.target.value))}

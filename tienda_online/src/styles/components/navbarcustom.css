@@ -1,14 +1,36 @@
+/*botones iniciar sesion/registrarse - admin - salir - carrito*/
+.card-buttons-right {
+  display: flex;
+  align-items: center;              /* centra verticalmente todo */
+  gap: 0.4rem;                      /* control del espaciado entre botones */
+}
+.card-buttons-right .btn-link {
+  text-decoration: none !important; /* quita subrayado */
+  padding: 0 !important; 
+  margin: 0 !important;
+  display: flex;                    /* para alinear ícono + texto */
+  align-items: center;              /* centra verticalmente ícono y texto */
+  line-height: 1;                   /* mantiene proporción */
+}
 .card-user-icon {
-    font-size: 1.3rem;
+  font-size: 1.3rem;
+  margin-right: 4px;
 }
 .card-user-span {
-    font-size: 0.85rem;
-    vertical-align: middle;
+  font-size: 0.85rem;
+  max-width: 120px;         /* ajustá según tu diseño */
+  overflow: hidden;         /* oculta el exceso */
+  text-overflow: ellipsis;  /* agrega los “...” */
+  white-space: nowrap;      /* mantiene todo en una sola línea */
+  display: inline-block;    /* necesario para que funcione text-overflow */
+  vertical-align: middle;
+}
+
+.card-user-admin,
+.card-user-logout {
+  font-size: 0.85rem;       /* mismo tamaño para que alineen */
 }
 .card-cart-shopping-span {
-    font-size: 0.9rem;
-    margin-left: 4px;
-}
-.card-categorias-link {
-    margin-left: 0.5rem;
+  font-size: 0.9rem;
+  margin-left: 4px;
 }
