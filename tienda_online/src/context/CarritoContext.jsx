@@ -1,4 +1,3 @@
-import React from "react";
 import {createContext, useContext, useState, useEffect} from "react";
 
 const CarritoContext = createContext();
@@ -36,31 +35,31 @@ export function CarritoProvider({children}) {
     }
 
     //quitar una unidad de un producto del carrito
-    const quitarCantidad = (id) => {
-      const nuevoCarrito = carrito.map(item => {
-        if (item.id === id && item.cantidad > 1) {
-          return {...item, cantidad: item.cantidad - 1};
-        } else {
-          return item;
-        }
-      }
-    ).filter(item => item.cantidad > 0);
+    // const quitarCantidad = (id) => {
+    //   const nuevoCarrito = carrito.map(item => {
+    //     if (item.id === id && item.cantidad > 1) {
+    //       return {...item, cantidad: item.cantidad - 1};
+    //     } else {
+    //       return item;
+    //     }
+    //   }
+    // ).filter(item => item.cantidad > 0);
 
-      setCarrito(nuevoCarrito);
-    }; 
+    //   setCarrito(nuevoCarrito);
+    // }; 
 
     //agregar una unidad de un producto del carrito
-    const agregarCantidad = (id) => {
-      const nuevoCarrito = carrito.map(item => {
-        if (item.id === id) {
-          return {...item, cantidad: item.cantidad + 1};
-        } else {
-          return item;
-        }
-      });
+    // const agregarCantidad = (id) => {
+    //   const nuevoCarrito = carrito.map(item => {
+    //     if (item.id === id) {
+    //       return {...item, cantidad: item.cantidad + 1};
+    //     } else {
+    //       return item;
+    //     }
+    //   });
 
-      setCarrito(nuevoCarrito);
-    }
+    //   setCarrito(nuevoCarrito);
+    // }
 
     //funcion actualizarCantidad recibiendo el producto y el +1 o -1
     const actualizarCantidad = (producto, delta) => {

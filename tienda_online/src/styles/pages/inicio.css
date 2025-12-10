@@ -1,45 +1,38 @@
-.carrusel-wrapper {
-    position: relative;
+.carousel-portada {
     width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
+    height: 450px; /* Mantén estable el alto */
+    position: relative;
     overflow: hidden;
 }
-.contanier-item-carrusel {          
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-.carrusel-slide {
-    min-width: 100%;
-    height: 400px;
-    opacity: 0;
-    transform: scale(0.95);
-    transition: all 0.4s ease;
-    display: none;
-}
-.carrusel-slide.active {
-    display: block;
-    opacity: 1;
-    transform: scale(1);
-}
-.carrusel-media {
+
+.carousel-portada img {
     width: 100%;
     height: 100%;
-    object-fit:cover;
+    object-fit: cover;
 }
-.carrusel-btn {
-    position: absolute;
-    top: 50%;
-    border: none;
-    font-size: 0.5rem;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 50%;
-    z-index: 10;
+
+.portada {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    opacity: 0.7;
 }
-.carrusel-btn.left {
-    left: 8px;
+.carousel-caption {
+    position: absolute !important;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 }
-.carrusel-btn.right {
-    right: 8px;
+.link-card {
+    text-decoration: none;
+    color: inherit;
+}
+
+.product-carousel .card {
+    height: 240px;  /* siempre igual */
+}
+.product-carousel .card img {
+    height: 100px;
+    object-fit: cover;
 }

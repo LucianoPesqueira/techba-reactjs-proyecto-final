@@ -1,12 +1,15 @@
 import { createContext, useEffect, useState, useContext } from "react";
+import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
 export const UsuarioProvider = ({children}) => {
     const [user, setUser] = useState(null); // null = no logueado
-    const [loadingUser, setLoadingUser] = useState(false);
-    const [errorUser, setErrorUser] = useState(null);
+    const [loadingUser, setLoadingUser] = useState(false); // estado de carga al loguear
+    const [loadingAuth, setLoadingAuth] = useState(true); // estado de carga al verificar auth en inicio
+    const [errorUser, setErrorUser] = useState(null); // error al loguear
+    const [justLoggedOut, setJustLoggedOut] = useState(false); // estado para manejar acciones post logout
     const MOCKAPI_URL = "https://68d48305214be68f8c696be9.mockapi.io/api/usuarios";
     const LOCAL_JSON = "data/listaUsuarios.json";
 
@@ -18,11 +21,14 @@ export const UsuarioProvider = ({children}) => {
       if (storedtoken && storedUser) {
         setUser(JSON.parse(storedUser));
       }
+
+      setLoadingAuth(false);
     }, []);
 
 
     const login = async({ nombre, contrasena}) => {
       setLoadingUser(true);
+      setJustLoggedOut(false);
       let usuarioEncontrado = null;
       let response;
 
@@ -43,9 +49,17 @@ export const UsuarioProvider = ({children}) => {
         //busco el usuario en los datos obtenidos del MockAPI
         if (Array.isArray(data) && data.length > 0) {
           usuarioEncontrado = data.find((u) => u.nombre === nombre && u.contrasena === contrasena);
+        }
+
+        if (usuarioEncontrado) {
           const fakeToken = `fake-token-${usuarioEncontrado.nombre}`;
           localStorage.setItem("authToken", fakeToken);
           localStorage.setItem("authUser", JSON.stringify(usuarioEncontrado));
+          setUser(usuarioEncontrado);
+        } else {
+          setErrorUser("Usuario o contraseña incorrectos");
+          setUser(null);
+          return;
         }
 
         //Si no lo encontro en MockAPI, busco en el JSON local
@@ -55,18 +69,20 @@ export const UsuarioProvider = ({children}) => {
 
           //obtengo el usuario del JSON local
           usuarioEncontrado = localData.find((u) => u.nombre === nombre && u.contrasena === contrasena);
+          
+          if (usuarioEncontrado) {
           const fakeToken = `fake-token-${usuarioEncontrado.nombre}`;
           localStorage.setItem("authToken", fakeToken);
           localStorage.setItem("authUser", JSON.stringify(usuarioEncontrado));
-        }
-        
-        //seteo el usuario del MockAPI o JSON local (o null si no lo encontro)
-        if (usuarioEncontrado) {
           setUser(usuarioEncontrado);
         } else {
-          console.warn("Usuario no encontrado");
+          setErrorUser("Usuario o contraseña incorrectos");
           setUser(null);
+          return;
         }
+        }
+        //fin de try MockAPI
+
       } catch (err) {
         console.log("Error al cargar usuarios:", err);
         setErrorUser(err.message || "Error al cargar usuarios");
@@ -77,11 +93,18 @@ export const UsuarioProvider = ({children}) => {
           const localData = await localResponse.json();
 
           usuarioEncontrado = localData.find((u) => u.nombre === nombre && u.contrasena === contrasena);
+
+          if (usuarioEncontrado) {
           const fakeToken = `fake-token-${usuarioEncontrado.nombre}`;
           localStorage.setItem("authToken", fakeToken);
           localStorage.setItem("authUser", JSON.stringify(usuarioEncontrado));
+          setUser(usuarioEncontrado);
+          } else {
+            setErrorUser("Usuario o contraseña incorrectos");
+            setUser(null);
+            return;
+          }
 
-          setUser(usuarioEncontrado || null);
         } catch (errLocal) {
           console.error("No se pudo cargar el JSON local:", errLocal);
           setErrorUser(errLocal.message || "No se pudo cargar el JSON local");
@@ -93,16 +116,20 @@ export const UsuarioProvider = ({children}) => {
     };
 
     const logout = () => {
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("authUser");
+      setJustLoggedOut(true);
       setUser(null);
-      Navigate("/productos");
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("authUser");  
+      toast.success("Has cerrado sesión correctamente");
     };
 
     const value = {
       user, 
       loadingUser,
+      justLoggedOut,
       errorUser,
+      setErrorUser,
+      loadingAuth,
       login,
       logout,
       isAuthenticated: !!user, // true si user no es null

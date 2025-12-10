@@ -1,410 +1,559 @@
 [
   {
     "nombre": "Battlefield 6",
-    "categoria": ["Shooter"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Shooter"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/coa5zt.webp",
     "precio": "108000",
     "stock": 88,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2025.",
-    "Es apto para múltiples jugadores.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2025.",
+      "Es apto para múltiples jugadores.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "1"
   },
   {
     "nombre": "Hollow Knight: Silksong",
-    "categoria": ["Platform", "Adventure", "Indie"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Platform",
+      "Adventure",
+      "Indie"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaend.webp",
     "precio": "20535",
     "stock": 19,
     "descripcion": [
-    "Plataforma: PC.",
-    "Edición: Original.",
-    "Formato: Digital.",
-    "Modo de juego: Offline."
+      "Plataforma: PC.",
+      "Edición: Original.",
+      "Formato: Digital.",
+      "Modo de juego: Offline."
     ],
+    "estado": "Activo",
     "id": "2"
   },
   {
     "nombre": "Battlefield 2042",
-    "categoria": ["Shooter"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Shooter"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7dfn.webp",
     "precio": "102743",
     "stock": 79,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2025.",
-    "Es apto para múltiples jugadores.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2025.",
+      "Es apto para múltiples jugadores.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "3"
   },
   {
     "nombre": "Assassin's Creed Valhalla",
-    "categoria": ["Role-playing", "Adventure"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Adventure",
+      "Role-playing"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2ed3.webp",
     "precio": "47999",
     "stock": 33,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2020.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2020.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "4"
   },
   {
     "nombre": "Assassin's Creed Mirage",
-    "categoria": ["Role-playing", "Adventure"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Adventure",
+      "Role-playing"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co57sj.webp",
     "precio": "51500",
     "stock": 75,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2023.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2023.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "5"
   },
   {
     "nombre": "Assassin's Creed Shadows",
-    "categoria": ["Role-playing", "Adventure"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Adventure",
+      "Role-playing"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co87cu.webp",
     "precio": "92650",
     "stock": 83,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2025.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2025.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "6"
   },
   {
     "nombre": "EA Sports FC 25",
-    "categoria": ["Simulator", "Sport"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Sport",
+      "Simulator"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/coa755.webp",
     "precio": "58999",
     "stock": 23,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2024.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2024.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "7"
   },
   {
     "nombre": "EA Sports FC 26",
-    "categoria": ["Simulator", "Sport"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Sport",
+      "Simulator"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/coa5wx.webp",
     "precio": "104800",
     "stock": 47,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2025.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2025.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "8"
   },
   {
     "nombre": "Red Dead Redemption 2",
-    "categoria": ["Shooter", "Role-playing", "Adventure"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Shooter",
+      "Role-playing",
+      "Adventure"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1q1f.webp",
     "precio": "17800",
     "stock": 32,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Procesador mínimo requerido: Intel Core i5-2500K o AMD FX-6300.",
-    "Requiere tarjeta gráfica Nvidia GeForce GTX 770 o AMD Radeon R9 280.",
-    "Año de lanzamiento: 2019.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Procesador mínimo requerido: Intel Core i5-2500K o AMD FX-6300.",
+      "Requiere tarjeta gráfica Nvidia GeForce GTX 770 o AMD Radeon R9 280.",
+      "Año de lanzamiento: 2019.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "9"
   },
   {
     "nombre": "F1 25",
-    "categoria": ["Racing", "Simulator", "Sport"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Racing",
+      "Simulator",
+      "Sport"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9mk6.webp",
     "precio": "15450",
     "stock": 58,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2019.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2019.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "10"
   },
   {
     "nombre": "Marvel's Spider-Man 2",
-    "categoria": ["Adventure"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Adventure"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1r77.webp",
     "precio": "12700",
     "stock": 74,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2023.",
-    "Modo de juego: Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2023.",
+      "Modo de juego: Offline."
     ],
+    "estado": "Activo",
     "id": "11"
   },
   {
     "nombre": "Call of Duty: Modern Warfare II",
-    "categoria": ["Shooter"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Shooter"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4sbw.webp",
     "precio": "26200",
     "stock": 11,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2022.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2022.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "12"
   },
   {
     "nombre": "NBA 2K25",
-    "categoria": ["Simulator", "Sport"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Sport",
+      "Simulator"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8te0.webp",
     "precio": "22500",
     "stock": 51,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2024.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2024.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "13"
   },
   {
     "nombre": "Forza Horizon 5: Premium Edition",
-    "categoria": ["Racing", "Sport"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Racing",
+      "Sport"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co45k9.webp",
     "precio": "17300",
     "stock": 39,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2021.",
-    "Es apto para múltiples jugadores.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2021.",
+      "Es apto para múltiples jugadores.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "14"
   },
   {
     "nombre": "God Of War",
-    "categoria": ["Role-playing", "Adventure"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Adventure",
+      "Role-playing"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.webp",
     "precio": "10500",
     "stock": 11,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2021.",
-    "Es apto para múltiples jugadores.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2021.",
+      "Es apto para múltiples jugadores.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "15"
   },
   {
     "nombre": "God of War Ragnarök",
-    "categoria": ["Role-playing", "Adventure"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Adventure",
+      "Role-playing"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5s5v.webp",
     "precio": "42709",
     "stock": 14,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2022.",
-    "Es apto para múltiples jugadores.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2022.",
+      "Es apto para múltiples jugadores.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "16"
   },
   {
     "nombre": "Black Myth: Wukong",
-    "categoria": ["Role-playing", "Adventure"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Adventure",
+      "Role-playing"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8h3y.webp",
     "precio": "78999",
     "stock": 41,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2024.",
-    "Es apto para múltiples jugadores.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2024.",
+      "Es apto para múltiples jugadores.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "17"
   },
   {
     "nombre": "Hogwarts Legacy",
-    "categoria": ["Role-playing", "Adventure"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Adventure",
+      "Role-playing"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaav6.webp",
     "precio": "31500",
     "stock": 28,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2023.",
-    "Es apto para múltiples jugadores.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2023.",
+      "Es apto para múltiples jugadores.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "18"
   },
   {
     "nombre": "The Witcher 3: Wild Hunt",
-    "categoria": ["Role-playing", "Adventure"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Adventure",
+      "Role-playing"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaarl.webp",
     "precio": "11500",
     "stock": 73,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2015.",
-    "Modo de juego: Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2015.",
+      "Modo de juego: Offline."
     ],
+    "estado": "Activo",
     "id": "19"
   },
   {
     "nombre": "Elden Ring",
-    "categoria": ["Role-playing", "Adventure"],
-    "plataforma": ["juegos pc"],
+    "categoria": [
+      "Adventure",
+      "Role-playing"
+    ],
+    "plataforma": [
+      "PC"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.webp",
     "precio": "15540",
     "stock": 17,
     "descripcion": [
-    "Plataforma: PC",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2022.",
-    "Modo de juego: Offline."
+      "Plataforma: PC",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2022.",
+      "Modo de juego: Offline."
     ],
+    "estado": "Activo",
     "id": "20"
   },
   {
     "nombre": "EA Sports FC 26 PS4",
-    "categoria": ["Simulator", "Sport"],
-    "plataforma": ["juegos ps4"],
+    "categoria": [
+      "Sport",
+      "Simulator"
+    ],
+    "plataforma": [
+      "PS4"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/coa5wx.webp",
     "precio": "120000",
     "stock": 43,
     "descripcion": [
-    "Plataforma: PS4",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2025.",
-    "Modo de juego: Offline."
+      "Plataforma: PS4",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2025.",
+      "Modo de juego: Offline."
     ],
+    "estado": "Activo",
     "id": "21"
   },
   {
     "nombre": "Minecraft PS4",
-    "categoria": ["Simulator", "Adventure", "Arcade"],
-    "plataforma": ["juegos ps4"],
+    "categoria": [
+      "Adventure",
+      "Simulator",
+      "Arcade"
+    ],
+    "plataforma": [
+      "PS4"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8fu7.webp",
     "precio": "15540",
     "stock": 22,
     "descripcion": [
-    "Plataforma: PS4",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2016.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PS4",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2016.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "22"
   },
   {
     "nombre": "Ghost of Yotei PS5",
-    "categoria": ["Role-playing", "Adventure"],
-    "plataforma": ["juegos ps5"],
+    "categoria": [
+      "Adventure",
+      "Role-playing"
+    ],
+    "plataforma": [
+      "PS5"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9coo.webp",
     "precio": "88000",
     "stock": 45,
     "descripcion": [
-    "Plataforma: PS5",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2025.",
-    "Modo de juego: Offline."
+      "Plataforma: PS5",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2025.",
+      "Modo de juego: Offline."
     ],
+    "estado": "Activo",
     "id": "23"
   },
   {
     "nombre": "The Last of Us. Part II Remastered PS5",
-    "categoria": ["Shooter", "Adventure"],
-    "plataforma": ["juegos ps5"],
+    "categoria": [
+      "Adventure",
+      "Shooter"
+    ],
+    "plataforma": [
+      "PS5"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/coa1gr.webp",
     "precio": "9500",
     "stock": 27,
     "descripcion": [
-    "Plataforma: PS5",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2024.",
-    "Modo de juego: Offline."
+      "Plataforma: PS5",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2024.",
+      "Modo de juego: Offline."
     ],
+    "estado": "Activo",
     "id": "24"
   },
   {
     "nombre": "Mortal Kombat 1 PS5",
-    "categoria": ["Fighting"],
-    "plataforma": ["juegos ps5"],
+    "categoria": [
+      "Fighting"
+    ],
+    "plataforma": [
+      "PS5"
+    ],
     "imagen": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9b8g.webp",
     "precio": "21750",
     "stock": 66,
     "descripcion": [
-    "Plataforma: PS5",
-    "Edición: Standard Edition.",
-    "Formato: Digital",
-    "Año de lanzamiento: 2023.",
-    "Modo de juego: Online/Offline."
+      "Plataforma: PS5",
+      "Edición: Standard Edition.",
+      "Formato: Digital",
+      "Año de lanzamiento: 2023.",
+      "Modo de juego: Online/Offline."
     ],
+    "estado": "Activo",
     "id": "25"
   }
 ]

@@ -1,15 +1,18 @@
 import '../styles/components/navbarcustom.css'
 import { Navbar, Nav, Container, NavDropdown, Form, Button, ButtonGroup, InputGroup} from 'react-bootstrap';
-import { useState, useContext } from 'react'
+import { ShoppingBasket, Search, User, Contact, List } from 'lucide-react';
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import LogoPerfil from '../assets/img/lnp-store.png'
+
 import { useCarritoContext } from '../context/CarritoContext'
-import { ProductContext } from '../context/ProductosContext';
+import { useProductContext } from '../context/ProductosContext';
 import { useUserContext } from '../context/UsuarioContext';
 
 export default function NavbarCustom() {
   const {carrito} = useCarritoContext();
   const cantidadTotal = carrito.reduce((acc, item) => acc + item.cantidad, 0);//suma cantidad
-  const { productos, loading, error, filteredProduct, searchProduct } = useContext(ProductContext);
+  const { productos, loading, error, filteredProduct, searchProduct } = useProductContext();
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
@@ -17,7 +20,6 @@ export default function NavbarCustom() {
 
   const [expanded, setExpanded] = useState(false);
 
-  const img = "../../public/logo.svg"
 
   //del context productos obtengo los nombres de estado
   if(loading) return <p>Cargando Productos...</p>;
@@ -27,6 +29,10 @@ export default function NavbarCustom() {
   //cargo las categorias - plataformas
   const plataformas = [...new Set(productos.flatMap(p => p.plataforma))];
   const categorias = [...new Set(productos.flatMap(p => p.categoria))];
+
+  // const handleLogout = () => {
+  //   logout();
+  // };
 
   return (
     <>
@@ -38,6 +44,7 @@ export default function NavbarCustom() {
             <InputGroup>
               <Form.Control
                 type="search"
+                id='productSearchInput'
                 value={searchTerm}
                 size='sm'
                 placeholder="Buscar..."
@@ -48,35 +55,44 @@ export default function NavbarCustom() {
                 }}
               />
               <Button 
-                variant="outline-secondary" 
+                variant="outline-secondary"
+                aria-label="Buscar productos" 
                 onClick={() => {
                   navigate("/buscarProducto", { state: { filteredProduct } });
                   setSearchTerm('');
                 }}
               >
-                <i className="fa-solid fa-magnifying-glass"></i>
+                {/* <i className="fa-solid fa-magnifying-glass"></i> */}
+                <Search size={18} />
               </Button>
             </InputGroup>
           </Form>
           {/* Centro: logo */}
-          <Navbar.Brand className='mx-auto d-flex align-items-center'>
+          <Navbar.Brand className='mx-auto d-flex align-items-center d-none d-md-block'>{/*d-sm-none oculta logo en pantalla chica */}
             <Link to="/">
               <img
-                src={img}
-                width="30"
-                height="30"
+                src={LogoPerfil}
                 alt="logo"
-                className="me-2"
+                className="me-2 img-logo-navbar"
+                width="400"
+                height="300"
               />
             </Link>
           </Navbar.Brand>
           {/* Derecha: Iniciar Sesion - Admin - Carrito */}
           <Nav className="ms-auto d-flex align-items-center">
             <ButtonGroup className='card-buttons-right'>
-
-              <Button variant='link' size='lg' className='text-white' as={Link} to={isAuthenticated? '#':'/login'}>
-                <i className="fa-solid fa-user m-2 card-user-icon"></i>
-                <span className="card-user-span">
+              <Button
+                variant="link"
+                aria-label="Abrir perfil de usuario"
+                size="lg"
+                className="text-white"
+                as={Link}
+                to={isAuthenticated ? '/perfil' : '/iniciarSesion'}
+              >
+                {/* <i className="fa-solid fa-user m-2 card-user-icon"></i> */}
+                <User size={22} className="me-1 card-user-icon" />
+                <span className="card-user-span text-white text-decoration-none">
                   {isAuthenticated ? `¡Hola!, ${user.nombre}` : 'Iniciar sesión / Registrarse'}
                 </span>
               </Button>
@@ -84,16 +100,17 @@ export default function NavbarCustom() {
               {isAuthenticated && (
                 <>
                   {isAdmin && (
-                    <Button variant='link' size='md' className='text-white ms-2 card-user-admin' as={Link} to={'/admin'}>
+                    <Button variant='link' size='md' className='card-user-admin text-white ms-2' as={Link} to={'/dashboard'}>
                       Admin
                     </Button>
                   )}
-                  <Button variant='link' size='md' className='text-white ms-2 card-user-logout' onClick={logout}>Salir</Button>
+                  {/* <Button variant='link' size='md' className='text-white ms-2 card-user-logout' onClick={handleLogout}>Salir</Button> */}
                 </>
               )}
               {/*Link carrito */}
-              <Button variant="link" size='lg' className='text-white' as={Link} to={'/carrito'}>
-                <i className="fa-solid fa-basket-shopping me-1"></i>
+              <Button variant="link" aria-label='Ver carrito de compras' size='lg' className='text-white' as={Link} to={'/carrito'}>
+                {/* <i className="fa-solid fa-basket-shopping me-1"></i> */}
+                <ShoppingBasket size={24} className="me-1" />
                 <span className='card-cart-shopping-span'>{cantidadTotal}</span>
               </Button>    
             </ButtonGroup>   
@@ -133,19 +150,21 @@ export default function NavbarCustom() {
                   className="card-categorias-link"
                   onClick={() => setExpanded(false)}//lo cierra
                 >
-                  {plat}
+                  {`Juegos ${plat}`}
                 </Nav.Link>
               ))}            
             </Nav>           
             {/*Links derecha */}
             <Nav>
-              <Nav.Link as={Link} to="/contacto" className="d-flex align-items-center" onClick={() => setExpanded(false)}>
-                <i className="fa-solid fa-file-signature me-1"></i>
+              <Nav.Link as={Link} to="/contacto" className="align-items-center" onClick={() => setExpanded(false)}>
+                {/* <i className="fa-solid fa-file-signature me-1"></i> */}
+                <Contact size={18} className="me-1" />
                 <span className='card-contact'>Contacto</span>
               </Nav.Link>
 
-              <Nav.Link as={Link} to="/productos" className="d-flex align-items-center" onClick={() => setExpanded(false)}>
-                <i className="fa-solid fa-list me-1"></i>
+              <Nav.Link as={Link} to="/productos" className="align-items-center" onClick={() => setExpanded(false)}>
+                {/* <i className="fa-solid fa-list me-1"></i> */}
+                <List size={18} className="me-1" />
                 <span className='card-product-buttom'>Productos</span>
               </Nav.Link>
             </Nav>

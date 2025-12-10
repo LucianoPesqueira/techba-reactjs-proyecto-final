@@ -1,0 +1,262 @@
+body {
+    background-color: #f8fafc;
+}
+.container-profile {
+    display: flex;
+    margin: 50px 10px;
+    text-align: left;
+}
+.profile {
+    flex: 1;
+    margin-right: 10px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; /* Sombra sutil */
+    border-radius: 5px; /* Bordes redondeados */
+    height: max-content; /* Ajusta la altura al contenido */
+}
+.profile-header {
+    display: flex;
+    margin-left: 15px;
+}
+.profile-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    margin: 10px; /* Espacio alrededor de la imagen */
+}
+.profile-text-container {
+    line-height: 0.5;/* Espaciado entre líneas */
+    margin-top: 10px;
+}
+.profile-title {
+    font-family: "poppins", sans-serif;
+    font-size: 20px;
+}
+.profile-email {
+    font-family: "poppins", sans-serif;
+    font-size: 20px;
+}
+/* Menú de navegación lateral */
+.menu { 
+    margin: 0 20px;
+}
+/* Estilo de los botones del menú */
+.menu-link { 
+    display: block;
+    text-align: left;
+    width: 15em;
+    height: 2.5em;
+    border: none;
+    color: #768499;
+    background-color: #fff;
+    font-family: "poppins", sans-serif;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+/* Efecto hover para los botones del menú que no este activo*/
+.menu-link:hover:not(.btn-active) {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+/* Espacio entre el icono y el texto */
+.menu-icon {
+    margin-right: 10px; 
+}
+/* Estilo para el botón activo del menú */
+.btn-active {
+    /* background-color: #536dfe; */
+    background-color: rgba(13, 110, 253, 1);
+    color: #fff;
+}
+
+/* ------------------Sección de edición de perfil------------------ */
+.account {
+    flex: 2;
+    margin-left: 10px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; /* Sombra sutil */
+    border-radius: 5px; /* Bordes redondeados */
+    height: max-content; /* Ajusta la altura al contenido */
+}
+.account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #768499;
+}
+.account-title {
+    font-family: poppins, sans-serif;
+    font-size: 20px;
+    color: #1e293b;
+    font-weight: 500;
+    margin-left: 10px;
+}
+.btn-container {
+    margin-right: 5px;
+}
+.btn-cancel {
+    width: 5em;
+    height: 2.5em;
+    cursor: pointer;
+    border: 1px solid #768499;
+    border-radius: 2em;
+    color: #1e293b;
+    font-weight: bold;
+    margin-right: 5px;
+    background-color: #fff;
+    transition-duration: 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.1);
+}
+.btn-cancel:hover {
+    background-color: #f1f5f9;
+}
+.btn-save {
+    width: 5em;
+    height: 2.5em;
+    cursor: pointer;
+    border: 1px solid #458ff6;
+    border-radius: 2em;
+    color: #fff;
+    font-weight: bold;
+    margin-left: 5px;
+    /* background-color: #536dfe; */
+    background-color: rgba(13, 110, 253, 1);
+    transition-duration: 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.1);
+}
+.btn-save:hover {
+    background-color: #458ff6;
+}
+.account-edit {
+    margin: 15px 0;/* Espacio arriba y abajo */
+    display: flex;
+    justify-content: space-between;
+}
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+}
+.input-container Form.Label {
+    font-family: poppins, sans-serif;
+    color: #768499;
+    font-size: 14px;
+}
+.input-container InputGroup {
+    font-family: "poppins, sans-serif";
+    height: 35px;
+    border: 1.5px solid #768499;
+    border-radius: 5px;
+    padding: 5px;
+    color: #768499;
+}
+.input-container InputGroup:focus {
+    outline: none;
+    border: 1.5px solid #536dfe;
+}
+
+/* ------------------Sección de compras------------------ */
+.shopping-list {
+    flex: 2;
+    margin-left: 10px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; /* Sombra sutil */
+    border-radius: 5px; /* Bordes redondeados */
+    height: max-content; /* Ajusta la altura al contenido */
+}
+.shopping-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #768499;
+}
+.shopping-title {
+    font-family: poppins, sans-serif;
+    font-size: 20px;
+    color: #1e293b;
+    font-weight: 500;
+    margin-left: 10px;
+}
+.account-edit {
+    margin: 15px 0;/* Espacio arriba y abajo */
+    display: flex;
+    justify-content: space-between;
+}
+
+/*------------------Cerrar Sesion------------------ */
+.account-logout {
+    flex: 2;
+    margin-left: 10px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; /* Sombra sutil */
+    border-radius: 5px; /* Bordes redondeados */
+    height: max-content; /* Ajusta la altura al contenido */
+}
+.logout-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #768499;
+}
+.logout-title {
+    font-family: poppins, sans-serif;
+    font-size: 20px;
+    color: #1e293b;
+    font-weight: 500;
+    margin-left: 10px;
+}
+.logout-content {
+    margin: 15px 0;/* Espacio arriba y abajo */
+    display: flex;
+    justify-content: space-between;
+}
+.btn-logout {
+    width: 8em;
+    height: 3.5em;
+    cursor: pointer;
+    border: 1px solid #458ff6;
+    border-radius: 1em;
+    color: #fff;
+    font-weight: bold;
+    margin-left: 5px;
+    background-color: #536dfe;
+    transition-duration: 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.1);
+}
+.btn-logout:hover {
+    background-color: #458ff6;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        /* margin: 20px 10px; */
+    }
+    .container-profile {
+        flex-direction: column;
+    }
+     .profile {
+        margin-bottom: 20px;
+        margin-right: 0;
+     }
+     .account {
+        margin: 0;
+     }
+    .account-header {
+        flex-direction: column;
+    }
+    .account-edit {
+        flex-direction: column;
+        margin: 10px;
+    }
+    .input-container {
+        margin: 10px;
+    }
+    .input-container InputGroup {
+        margin-right: 10px;
+    }
+}

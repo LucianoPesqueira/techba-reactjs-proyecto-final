@@ -1,11 +1,18 @@
 import "../styles/pages/productos.css"
-import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { ProductContext } from '../context/ProductosContext';
+import { useProductContext } from '../context/ProductosContext';
+import { useDocumentHead } from "../hooks/useDocumentHead";
 
 
 export default function Productos() {
-  const { productos, loading, error } = useContext(ProductContext);
+
+  useDocumentHead({
+      title: "Todos los Productos - LNP Store",
+      description: "Explora todos los productos disponibles en LNP Store. Encuentra videojuegos para todas las plataformas y géneros al mejor precio.",
+      keywords: "tienda de videojuegos, catálogo de juegos, videojuegos online, comprar juegos en línea"
+    });
+
+  const { productos, loading, error } = useProductContext();
 
   if(loading) return <p>Cargando Productos...</p>;
   if(error) return <p>{error}</p>;
@@ -15,10 +22,14 @@ export default function Productos() {
       {productos.map((producto) => (
         <li key={producto.id} className="card-product">
           <Link to={`/productos/${producto.categoria || 'sin-categoria'}/${producto.id}`} state={{producto}}>
-          <img src={producto.imagen} alt={producto.nombre} className="card-product-img"></img>
+          <img src={producto.imagen} alt={producto.nombre} 
+            className="card-product-img"
+            width="400"
+            height="300"
+          />
           <div className="card-body">
             <h3 className="card-title">{producto.nombre}</h3>
-            <p className="card-price">${producto.precio.toLocaleString('es-AR', {minimumFractionDigits: 2})}</p>
+            <p className="text-success card-price">${producto.precio.toLocaleString('es-AR', {minimumFractionDigits: 2})}</p>
           </div>
           </Link>
         </li>
@@ -26,19 +37,3 @@ export default function Productos() {
     </ul>
   );
 }
-
-{/*schema productos 
-  id
-  nombre
-  descripcion
-  precio
-  avatar
-  categoria
-  stock
-  detalles
-  
-  otra api: https://fakestoreapi.com/products
-  mockfly
-
-  mockapi.io: https://http2.mlstatic.com/D_Q_NP_2X_787674-MLA93930889982_102025-E.webp (url profe)
-  */}

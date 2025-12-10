@@ -2,13 +2,14 @@
   {
     "nombre": "user1",
     "contrasena": "1234",
-    "email": "luciano@gmail.com",
+    "email": "user1@gmail.com",
     "is_admin": false,
     "id": "1"
   },
   {
     "nombre": "lucianoadmin",
     "contrasena": "admin123",
+    "email": "luciano@gmail.com",
     "is_admin": true,
     "id": "2"
   }

@@ -1,3 +1,12 @@
+.navbar {
+  min-height: 70px;
+}
+.img-logo-navbar {
+  border-radius: 30%;          /* hace la imagen circular */
+  object-fit: cover;           /* asegura que la imagen cubra el contenedor */
+  width: 40px;                 
+  height: 40px;                
+}
 /*botones iniciar sesion/registrarse - admin - salir - carrito*/
 .card-buttons-right {
   display: flex;

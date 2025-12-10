@@ -1,10 +1,6 @@
-import { createContext, useEffect, useState } from 'react';
-import { CardText } from 'react-bootstrap';
+import { useContext, createContext, useEffect, useState } from 'react';
 
 export const ProductContext = createContext();
-{/*const ProductosContext = createContext();
-
-export const useProductos = () => useContext(ProductosContext); */}
 
 export const ProductosProvider = ({ children }) => {
     const [productos, setProductos] = useState([]);
@@ -16,7 +12,7 @@ export const ProductosProvider = ({ children }) => {
 
     useEffect(() => {
       //funcion asincrona dentro del useEffect
-      const cargarProductos = async () => {
+      const loadingProducts = async () => {
         try {
           const controller = new AbortController();
           const timeout = setTimeout(() => controller.abort(), 3000);// corta a los 3 segundos
@@ -60,7 +56,7 @@ export const ProductosProvider = ({ children }) => {
         }
       };
 
-      cargarProductos();
+      loadingProducts();
     }, []);
 
     {/*funcion busqueda de productos */}
@@ -73,9 +69,82 @@ export const ProductosProvider = ({ children }) => {
       }
     };
 
+    {/*funcion generar 5 productos random */}
+    const getRandomProducts = (numProducts = 5) => {
+      if (productos.length === 0) return [];
+      const shuffled = [...productos].sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, numProducts);
+    };
+
+    {/*funcion agregar nuevo producto */}
+    const createProduct = async (newProduct) => {
+      try {
+        const response = await fetch(MOCKAPI_URL, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json',},
+          body: JSON.stringify(newProduct),
+        });
+        const data = await response.json();
+        setProductos(prev => [...prev, data]);
+    } catch (err) {
+        console.error("Error creando producto:", err);
+      }
+    };
+
+    {/*funcion actualizar producto */}
+    const updateProduct = async (id, updatedProduct) => {
+      try {
+        const response = await fetch(`${MOCKAPI_URL}/${id}`, {
+          method: 'PUT',
+          headers: {'Content-Type': 'application/json',},
+          body: JSON.stringify(updatedProduct),
+        });
+        const data = await response.json();
+        setProductos(prev => prev.map(p => p.id === data.id ? data : p));
+      } catch (err) {
+        console.error("Error actualizando producto:", err);
+      }
+    };
+
+    {/*funcion eliminar producto */}
+    const deleteProduct = async (id) => {
+      try {
+        const response = await fetch(`${MOCKAPI_URL}/${id}`, {
+          method: 'DELETE',
+        });
+        if (response.ok) {
+          setProductos(prev => prev.filter(p => p.id !== id));
+        } else {
+          console.error("Error eliminando producto:", response.statusText);
+        }
+      } catch (err) {
+        console.error("Error eliminando producto:", err);
+      }
+    };
+
+    const value = {
+      productos,
+      loading,
+      error,
+      filteredProduct,
+      searchProduct,
+      getRandomProducts,
+      createProduct,
+      updateProduct,
+      deleteProduct
+    };
+
     return (
-        <ProductContext.Provider value={{productos, loading, error, filteredProduct, searchProduct }}>
+        <ProductContext.Provider value={value}>
             {children}
         </ProductContext.Provider>
     );
+}
+
+// hooks y context para manejar la autenticacion del usuario (login, logout, estado)
+export function useProductContext() {
+    const context = useContext(ProductContext);
+    if (!context) throw new Error("useProductContext debe usarse dentro de un ProductoProvider");
+
+    return context;
 }

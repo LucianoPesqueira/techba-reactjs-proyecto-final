@@ -1,75 +1,110 @@
-import "../styles/pages/detalleproducto.css"
-import { Link, useParams, useLocation } from "react-router-dom";
-import { useCarritoContext } from '../context/CarritoContext'
-import { ProductContext } from "../context/ProductosContext";
-import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { Container, Row, Col, Card, Form, Button, ListGroup } from 'react-bootstrap';
+import { ShoppingCart, Package } from 'lucide-react';
 import Breadcrumb from "../components/Breadcrumb";
+
+import { useCarritoContext } from '../context/CarritoContext'
+import { useProductContext } from "../context/ProductosContext";
+import { useDocumentHead } from "../hooks/useDocumentHead";
+
+import "../styles/pages/detalleproducto.css"
 
 export default function ProductoDetalle() {
   const { id } = useParams();
-  // const location = useLocation();
-  const { productos, loading, error } = useContext(ProductContext);
-  // const [producto, setProducto] = useState(location.state?.producto);
+  const { productos, loading, error } = useProductContext();
   const {agregarAlCarrito} = useCarritoContext();
   const [cantidad, setCantidad] = useState(1);
   const producto = productos.find(p => p.id === id);
 
+  {/* SEO - Detalle del Producto */}
+  useDocumentHead({
+    title: producto ? `${producto.nombre}` : 'Comprar videojuegos online al mejor precio',
+    description: producto.descripcion.slice(0, 3).join(" "), 
+    keywords: `${producto.nombre}, comprar, precio, juegos`
+  });
+
   if(loading) return <p>Cargando Productos...</p>;
-
   if(error) return <p>{error}</p>;
- 
-  return(
-    <div className="card-details-product">
-      {/* Columna izquierda: imagen */}
-      <div className="card-details-left">
-        <img
-          src={producto.imagen}
-          alt={producto.nombre}
-          className="card-details-img"
-        />
-      </div>
 
-      {/* Columna derecha: info + descripción */}
-      <div className="card-details-right">
-        {/* Breadcrumb */}
-        <Breadcrumb categorias={producto.categoria} productoNombre={producto.nombre}></Breadcrumb>
 
-        {/* Título - Precio*/}
-        <h2 className="card-details-title">{producto.nombre}</h2>
-
-        <p className="card-details-price">
-          ${Number(producto.precio).toLocaleString("es-AR", { minimumFractionDigits: 2 })}
-        </p>
-        {/* Selector Stock - Boton Agregar al Carrito*/}
-        <div className="card-details-carrito">
-          <p className="card-details-stock">Stock disponible: {producto.stock}</p>
-          <div className="qty-button">
-            <input 
-              type="number" 
-              min="1"
-              max={producto.stock}
-              value={cantidad}
-              onChange={(e) => setCantidad(Number(e.target.value))}
-              className="qty-input"
+  return (
+      <Container className="my-5"> {/* Container de Bootstrap */}
+      <Row className="g-4"> {/* Fila principal, g-4 para un buen espaciado */}
+        
+        {/* Columna Izquierda: Imagen del Producto */}
+        <Col xs={12} lg={6} className="d-flex justify-content-center"> 
+          <Card className="shadow-sm border-0" style={{ maxWidth: '400px', width: '100%' }}>
+            <Card.Img 
+              variant="bottom" 
+              src={producto.imagen}
+              alt={producto.nombre}
             />
-            <button
-              className="btn-agregar"
-              onClick={() => agregarAlCarrito(producto, cantidad)}
-            >
-              Agregar al carrito
-            </button>
+          </Card>
+        </Col>
+
+        {/* Columna Derecha: Información y Descripción */}
+        <Col xs={12} lg={6}>
+          
+          {/* Breadcrumb */}
+          <Breadcrumb categorias={producto.categoria} productoNombre={producto.nombre} />
+
+          {/* Título */}
+          <h1 className="fw-bold mb-2">{producto.nombre}</h1>
+
+          {/* Precio */}
+          <p className="fs-3 fw-bolder mb-3 text-success">
+            ${Number(producto.precio).toLocaleString("es-AR", { minimumFractionDigits: 2 })}
+          </p>
+
+          {/* Stock */}
+          <div className="d-flex align-items-center mb-3">
+            <Package size={18} className="me-2 text-secondary" /> 
+            <p className="mb-0 text-muted">
+              Stock disponible: **{producto.stock}**
+            </p>
           </div>
-        </div>
-        {/* Descripción */}
-        <div className="card-details-description">
-          <h3>Descripción</h3>
-          <ul>
-            {producto.descripcion.map((linea, index) => (
-              <li key={index}>{linea}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-);
-};
+          
+          <hr />
+
+          {/* Selector de Cantidad y Botón */}
+          <div className="d-flex align-items-center mb-4">
+            <Form.Group controlId="formQuantity" className="me-3">
+              <Form.Label className="d-none">Cantidad</Form.Label>
+              <Form.Control 
+                type="number" 
+                min="1"
+                max={producto.stock}
+                value={cantidad}
+                onChange={(e) => setCantidad(Math.max(1, Math.min(producto.stock, Number(e.target.value))))} // Asegurar que no exceda min/max
+                style={{ width: '80px', textAlign: 'center' }}
+              />
+            </Form.Group>
+            
+            <Button
+              variant="primary" 
+              onClick={() => agregarAlCarrito(producto, cantidad)}
+              disabled={producto.stock === 0}
+              className="flex-grow-1 boton-carrito" // Ocupa el espacio restante
+            >
+              <ShoppingCart size={18} className="me-2" />
+              {producto.stock > 0 ? 'Agregar al carrito' : 'Sin Stock'}
+            </Button>
+          </div>
+
+          <hr />
+
+          {/* Descripción */}
+          <div className="mt-4">
+            <h3 className="h5 fw-bold mb-3">Descripción</h3>
+            <ListGroup variant="flush">
+              {producto.descripcion.map((linea, index) => (
+                <ListGroup.Item key={index} className="px-0 py-1">{linea}</ListGroup.Item>
+              ))}
+            </ListGroup>
+          </div>
+        </Col>
+      </Row>
+    </Container>
+  );
+}

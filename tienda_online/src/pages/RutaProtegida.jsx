@@ -1,17 +1,34 @@
 import { useUserContext } from "../context/UsuarioContext";
 import { Navigate } from "react-router-dom";
+import toast from "react-hot-toast"
+import { useEffect } from "react";
 
+//Componente de ruta protegida que verifica si el usuario está autenticado y es admin
+export default function RutaProtegida({ children, soloAdmin = false }) {
+    const { isAuthenticated, isAdmin, loadingAuth, justLoggedOut } = useUserContext();
 
-// Componente de ruta protegida que verifica si el usuario está autenticado y es admin
-export default function RutaProtegida({ children }) {
-    const { isAuthenticated, isAdmin } = useUserContext();
+    useEffect(() => {
+        if (!loadingAuth && !isAuthenticated && !justLoggedOut) {
+            toast.error("Debes iniciar sesion para acceder a esta seccion!");
+        } 
 
-    if (!isAuthenticated) {
-        return <Navigate to="/login" replace />; // redirige al login si no está autenticado
+        if (!loadingAuth && soloAdmin && !isAdmin) {
+            toast.error("No tienes permisos de administrador para acceder!");
+        }
+    }, [loadingAuth, isAuthenticated, isAdmin, soloAdmin, justLoggedOut]);
+
+    if (loadingAuth) {
+        return <div className="loading-auth">Cargando...</div>;
     }
 
-    if (!isAdmin) {
-        return <Navigate to="/" replace />; // redirige a inicio si no es admin
+    // Si no está autenticado, redirige a iniciar sesión
+    if (!isAuthenticated) {
+        return <Navigate to="/iniciarSesion" replace />; 
+    }
+
+    // Si la ruta es solo para admin y el usuario no es admin, redirige a inicio
+    if (soloAdmin && !isAdmin) {
+        return <Navigate to="/" replace />;
     }
 
     return children; 
