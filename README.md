@@ -56,4 +56,4 @@
 **Vercel**
 
 * Repositorio | [https://github.com/LucianoPesqueira/techba-reactjs-proyecto-final](https://github.com/LucianoPesqueira/techba-reactjs-proyecto-final)
-* Deploy |
+* Deploy |[ https://techba-reactjs-proyecto-final-hqp1tcczf.vercel.app/]()
