@@ -19,11 +19,23 @@ export default function ProductoDetalle() {
 
   {/* SEO - Detalle del Producto */}
   useDocumentHead({
-    title: producto ? `${producto.nombre}` : 'Comprar videojuegos online al mejor precio',
-    description: producto.descripcion.slice(0, 3).join(" "), 
-    keywords: `${producto.nombre}, comprar, precio, juegos`
+    title: producto?.nombre ? `${producto.nombre}` : 'Comprar videojuegos online al mejor precio',
+    description: producto
+  ? `compra ${producto.nombre} para ${producto.plataforma || 'todas las plataformas'}. 
+     Género: ${
+       Array.isArray(producto.categoria)
+         ? producto.categoria.join(' / ')
+         : producto.categoria || 'varios géneros'
+     }. 
+     Precio: $${Number(producto.precio).toLocaleString('es-AR', {
+       minimumFractionDigits: 2
+     })}.`
+  : 'Venta de videojuegos online para todas las plataformas y géneros. Encuentra los mejores precios y ofertas en nuestra tienda de videojuegos.',
+ 
+    keywords: producto?.nombre ? `${producto?.nombre}, comprar, precio, juegos` : 'videojuegos, tienda, comprar'
   });
 
+  
   if(loading) return <p>Cargando Productos...</p>;
   if(error) return <p>{error}</p>;
 
@@ -47,7 +59,7 @@ export default function ProductoDetalle() {
         <Col xs={12} lg={6}>
           
           {/* Breadcrumb */}
-          <Breadcrumb categorias={producto.categoria} productoNombre={producto.nombre} />
+          <Breadcrumb categoria={producto.categoria} plataforma={producto.plataforma} productoNombre={producto.nombre} />
 
           {/* Título */}
           <h1 className="fw-bold mb-2">{producto.nombre}</h1>

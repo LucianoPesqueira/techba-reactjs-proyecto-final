@@ -23,14 +23,13 @@
 }
 .card-user-icon {
   font-size: 1.3rem;
-  margin-right: 4px;
+  margin-right: 0px;
 }
 .card-user-span {
   font-size: 0.85rem;
-  max-width: 120px;         /* ajustá según tu diseño */
+  max-width: 110px;         /* ajustá según tu diseño */
   overflow: hidden;         /* oculta el exceso */
   text-overflow: ellipsis;  /* agrega los “...” */
-  white-space: nowrap;      /* mantiene todo en una sola línea */
   display: inline-block;    /* necesario para que funcione text-overflow */
   vertical-align: middle;
 }
@@ -42,4 +41,24 @@
 .card-cart-shopping-span {
   font-size: 0.9rem;
   margin-left: 4px;
+}
+
+/*------------------------ segundo navbar-----------------------*/
+.navbar-nav .dropdown-menu {
+  width: auto !important;
+  min-width: 180px;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+.navbar-nav .dropdown-item {
+  padding: 0.4rem 1rem; /* ajusta el padding según tu diseño */
+  border-radius: 8px;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .navbar-nav .dropdown-menu {
+    position: static !important; /* hace que el dropdown se comporte como un elemento normal */
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

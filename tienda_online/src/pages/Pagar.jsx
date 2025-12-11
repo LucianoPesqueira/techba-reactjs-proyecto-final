@@ -68,10 +68,10 @@ const Checkout = ({ total, onBackToCart, onOrderSuccess }) => {
                     <div className="p-4">
                         <h5 className="mb-4 text-primary">1. Detalles de Pago <CreditCard size={20} className="ms-2 text-muted" /></h5>
                         <div className="row g-3">
-                            <div className="col-12"><input type="text" className="form-control" placeholder="Número de Tarjeta" required /></div>
-                            <div className="col-md-6"><input type="text" className="form-control" placeholder="Nombre en la Tarjeta" required /></div>
-                            <div className="col-md-3"><input type="text" className="form-control" placeholder="MM/AA" required /></div>
-                            <div className="col-md-3"><input type="text" className="form-control" placeholder="CVV" required /></div>
+                            <div className="col-12"><input type="text" id='numero-tarjeta' name='numero-tarjeta' maxLength="16" className="form-control" placeholder="XXXX XXXX XXXX XXXX" pattern='\d{16}' required /></div>
+                            <div className="col-md-6"><input type="text" id='nombre-tarjeta' name='nombre-tarjeta' className="form-control" placeholder="Nombre en la Tarjeta" required /></div>
+                            <div className="col-md-3"><input type="month" id='mes-anio-tarjeta' name='mes-anio-tarjeta' className="form-control" placeholder="MM/AA" required /></div>
+                            <div className="col-md-3"><input type="password" id='cvv' name='cvv' maxLength="3" className="form-control" placeholder="CVV" required /></div>
                             <div className="col-12 mt-4">
                                 <p className="text-muted small">Al hacer clic en "Pagar", aceptas nuestros términos y condiciones.</p>
                             </div>

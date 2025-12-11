@@ -48,6 +48,8 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
                     </button>
                     <input 
                         type="text" 
+                        id={`cantidad-${item.id}`}
+                        name={`cantidad-${item.id}`}
                         className="form-control text-center bg-light" 
                         readOnly 
                         value={item.cantidad} 

@@ -23,6 +23,7 @@ export default function ProductoCategoria() {
     const { nombre } = useParams();
     const location = useLocation();
     const esPlataforma = location.pathname.includes('/plataforma/');
+    const esCategoria = location.pathname.includes('/categoria/');
 
     const [rango, setRango] = useState({ min: 0, max: Infinity });
     const [min, setMin] = useState('');
@@ -30,7 +31,7 @@ export default function ProductoCategoria() {
 
     {/* SEO para categorias/plataformas */}
     useDocumentHead({
-        title: `${nombre} - Categoría/Plataforma`,
+        title: nombre ? `${nombre} - Tienda de Videojuegos Online` : 'Tienda de Videojuegos Online',
         description: `Explora nuestra selección de productos en la categoría/plataforma ${nombre}. Encuentra los mejores videojuegos para tu entretenimiento.`,
         keywords: `productos ${nombre}, tienda de videojuegos, juegos online, categoría ${nombre}, plataforma ${nombre}`
     });
@@ -45,11 +46,23 @@ export default function ProductoCategoria() {
     if (error) return <p className="text-danger text-center my-4">{error}</p>;
 
     // Mostrar los productos segun categoria/plataforma
-    const productosFiltrados = productos.filter(p =>
-        esPlataforma
-            ? p.plataforma?.some(plat => plat.toLowerCase() === nombre.toLowerCase())
-            : p.categoria?.some(cat => cat.toLowerCase() === nombre.toLowerCase())
-    );
+    const productosFiltrados = productos.filter(p => {
+        const nombreLower = nombre.toLowerCase();
+
+        if (esPlataforma) {
+            if (typeof p.plataforma === 'string') {
+                return p.plataforma.toLowerCase() === nombreLower;
+            }
+
+            if (Array.isArray(p.plataforma)) {
+                return p.plataforma.some(plat => plat.toLowerCase() === nombreLower);
+            }
+            return false;
+        }
+        
+        return Array.isArray(p.categoria) &&
+            p.categoria.some(cat => cat.toLowerCase() === nombreLower);
+    });
 
     const productoFiltradosPorPrecio = productosFiltrados.filter(p => {
         const precio = Number(p.precio);
@@ -71,7 +84,7 @@ export default function ProductoCategoria() {
             <Row className="mb-3">
                 <Col>
                     {/* Usando tu componente Breadcrumb si lo necesitas, o el de Bootstrap si es simple */}
-                    <Breadcrumb categorias={[nombre]} plataformas={[nombre]} productoNombre={''} />
+                    <Breadcrumb categoria={esCategoria ? [nombre] : []} plataforma={esPlataforma ? nombre : ""} productoNombre={''} />
                 </Col>
             </Row>
 

@@ -49,6 +49,7 @@ export default function NavbarCustom() {
                 size='sm'
                 placeholder="Buscar..."
                 aria-label="Search"
+                required
                 onChange={(e) => {
                   searchProduct(e.target.value);
                   setSearchTerm(e.target.value);

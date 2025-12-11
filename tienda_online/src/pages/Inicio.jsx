@@ -48,19 +48,21 @@ export default function Inicio() {
     keywords: "tienda de videojuegos, juegos online, lanzamientos de videojuegos, juegos más vendidos"
   });
 
-  const { getRandomProducts, loading, error } = useProductContext();
+  const { productos, getRandomProducts, loading, error } = useProductContext();
 
   {/*obtengo 5 productos randomicamente para mostrarlo como los mas vendidos */}
-  const randomProducts = getRandomProducts(5);
+  const randomProducts = productos.length > 0
+    ? getRandomProducts(5)
+    : [];
 
   if(loading) return <p>Cargando Productos...</p>;
   if(error) return <p>{error}</p>;
   if (!randomProducts || randomProducts.length === 0) return <p>No hay productos....</p>;
 
   const slides = [
-    { id: 1, title : "Battlefield 6", url: "https://images.igdb.com/igdb/image/upload/t_720p/scy45o.webp", alt: "Nuevo Battlefield 6"},
+    { id: 1, title : "Battlefield 6", url: "https://images.igdb.com/igdb/image/upload/t_720p/scy45o.webp", alt: "Nuevo Shooter en primera persona"},
     { id: 2, title : "ARC Raiders", url: "https://images.igdb.com/igdb/image/upload/t_720p/ar47zf.webp", alt: "Shooter de Extraccion/ Multijugador"},
-    { id: 3, title : "Battlefield REDSEC", url: "https://images.igdb.com/igdb/image/upload/t_720p/sc103gp.webp", alt: "Free-to-Play de Battlefield REDSEC"},
+    { id: 3, title : "Battlefield REDSEC", url: "https://images.igdb.com/igdb/image/upload/t_720p/sc103gp.webp", alt: "Free-to-Play de Battlefield"},
     { id: 4, title : "Warframe: The Old Peace", url: "https://images.igdb.com/igdb/image/upload/t_720p/scy1pd.webp", alt: "Nueva expansion de Warframe: The Old Peace"},
   ];
 
@@ -82,7 +84,6 @@ export default function Inicio() {
                   className='img-fluid portada'
                   width="1280"
                   height="720"
-                  
                   //para optimizar carga de imagenes
                   fetchPriority={index === 0 ? 'high' : 'auto'}
                   loading={index === 0 ? 'eager' : 'lazy'}
